@@ -35,8 +35,9 @@ if ( empty( $autoload_paths ) ) {
 
 require_once $autoload_paths[0];
 
-$console = new Application();
+$console         = new Application();
+$default_command = new Scaffold();
 
-$console->add(new Scaffold());
-
+$console->add($default_command);
+$console->setDefaultCommand($default_command->getName());
 $console->run();
