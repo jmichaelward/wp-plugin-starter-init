@@ -1,0 +1,42 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Main entry-point for the Symfony Console command.
+ *
+ * @author Jeremy Ward <jeremy@jmichaelward.com>
+ * @since  2019-10-12
+ */
+
+namespace JMichaelWard\WPPluginStarterInit;
+
+use Symfony\Component\Console\Application;
+
+$autoload_paths = array_values(
+	array_filter(
+		[
+			__DIR__ . '/../../autoload.php',
+			__DIR__ . '/../vendor/autoload.php',
+			__DIR__ . '/vendor/autoload.php',
+		],
+		function ( $autoload_path ) {
+			return file_exists( $autoload_path );
+		}
+	)
+);
+
+if ( empty( $autoload_paths ) ) {
+	fwrite(
+		STDERR,
+		'You must set up the wp-plugin-starter-init dependencies using Composer via "composer install".'
+	);
+
+	die( 1 );
+}
+
+require_once $autoload_paths[0];
+
+$console = new Application();
+
+$console->add(new Scaffold());
+
+$console->run();
