@@ -88,16 +88,6 @@ class Scaffold extends Command {
 	 * @return int|void|null
 	 */
 	protected function execute( InputInterface $input, OutputInterface $output ) {
-
-		$output->writeln( 'Matching plugin filename to plugin directory name...' );
-
-		// rename the plugin file.
-		$path             = trim( `pwd` );
-		$path_parts       = explode( DIRECTORY_SEPARATOR, $path );
-		$plugin_directory = trim( array_pop( $path_parts ) );
-
-		$this->match_plugin_file_to_directory( $plugin_directory );
-
 		$output->writeln( "Let's gather the details to update your plugin scaffolding..." );
 
 		/* @var QuestionHelper $helper Interactive input. */
@@ -116,6 +106,15 @@ class Scaffold extends Command {
 
 			file_put_contents( $file_path, $replacement );
 		}
+
+		$output->writeln( 'Matching plugin filename to plugin directory name...' );
+
+		// rename the plugin file.
+		$path             = trim( `pwd` );
+		$path_parts       = explode( DIRECTORY_SEPARATOR, $path );
+		$plugin_directory = trim( array_pop( $path_parts ) );
+
+		$this->match_plugin_file_to_directory( $plugin_directory );
 	}
 
 	/**
