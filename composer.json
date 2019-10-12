@@ -1,0 +1,12 @@
+{
+    "name": "jmichaelward/wp-plugin-starter-init",
+    "description": "Command line utility to support the jmichaelward/wp-plugin-starter scaffolding process.",
+    "require": {
+        "symfony/console": "^4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "JMichaelWard\\WPPluginStarterInit\\": "src/"
+        }
+    }
+}
