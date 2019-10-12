@@ -8,5 +8,8 @@
         "psr-4": {
             "JMichaelWard\\WPPluginStarterInit\\": "src/"
         }
-    }
+    },
+    "bin": [
+        "wp-plugin-starter-init"
+    ]
 }
