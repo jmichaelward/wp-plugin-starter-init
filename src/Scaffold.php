@@ -90,6 +90,8 @@ class Scaffold extends Command {
 	protected function execute( InputInterface $input, OutputInterface $output ) {
 		$output->writeln( "Let's gather the details to update your plugin scaffolding..." );
 
+		$path = trim( `pwd` );
+
 		/* @var QuestionHelper $helper Interactive input. */
 		$helper = $this->getHelper('question');
 
@@ -110,7 +112,6 @@ class Scaffold extends Command {
 		$output->writeln( 'Matching plugin filename to plugin directory name...' );
 
 		// rename the plugin file.
-		$path             = trim( `pwd` );
 		$path_parts       = explode( DIRECTORY_SEPARATOR, $path );
 		$plugin_directory = trim( array_pop( $path_parts ) );
 
